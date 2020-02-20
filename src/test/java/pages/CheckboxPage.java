@@ -5,16 +5,13 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-public class CheckboxPage {
-
-    private WebDriver driver;
+public class CheckboxPage extends Page {
 
     public CheckboxPage (WebDriver driver) {
-        this.driver = driver;
+        super(driver, "https://www.seleniumeasy.com/test/basic-checkbox-demo.html");
     }
 
     public String singleCheckboxForm () {
-        driver.get("https://www.seleniumeasy.com/test/basic-checkbox-demo.html");
 
         WebElement ageCheckbox = driver.findElement(By.id("isAgeSelected"));
 

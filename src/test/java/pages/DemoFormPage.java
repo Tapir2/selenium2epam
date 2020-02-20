@@ -4,17 +4,13 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-public class DemoFormPage {
-
-    private WebDriver driver;
+public class DemoFormPage extends Page {
 
     public DemoFormPage (WebDriver driver) {
-       this.driver = driver;
+       super(driver, "https://www.seleniumeasy.com/test/basic-first-form-demo.html");
     }
 
     public String singleInputFields (String inputMessage) {
-
-        driver.get("https://www.seleniumeasy.com/test/basic-first-form-demo.html");
 
         WebElement userMessageInput = driver.findElement(By.id("user-message"));
 
@@ -30,8 +26,6 @@ public class DemoFormPage {
     }
 
     public String multiInputFields (String a, String b) {
-
-        driver.get("https://www.seleniumeasy.com/test/basic-first-form-demo.html");
 
         WebElement sum1Input = driver.findElement(By.id("sum1"));
 
