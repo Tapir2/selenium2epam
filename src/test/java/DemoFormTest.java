@@ -1,52 +1,30 @@
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
+import org.assertj.core.api.Assertions;
 import org.testng.annotations.Test;
+import pages.DemoFormPage;
 
 public class DemoFormTest extends BasicTest {
 
-    public static final String TEST_STRING = "Hello";
-
     @Test
-    public void testMessage () {
+    public void singleInputTest () {
 
-            driver.get("https://www.seleniumeasy.com/test/basic-first-form-demo.html");
+            String outputMessage = new DemoFormPage(driver).singleInputFields("Hello");
 
-            WebElement inputTextField = driver.findElement(By.id("user-message"));
-
-            inputTextField.sendKeys(TEST_STRING);
-
-            WebElement showMessageButton = driver.findElement(By.xpath("//button[contains(text(),'Show Message')]"));
-
-            showMessageButton.click();
-
-            WebElement outTextField = driver.findElement(By.id("display"));
-
-            String outputMessage = outTextField.getText();
-
-            assert TEST_STRING.equalsIgnoreCase(outputMessage);
+            Assertions.assertThat("Hello").isEqualTo(outputMessage);
     }
 
     @Test
     public void multiInputTest () {
 
-        driver.get("https://www.seleniumeasy.com/test/basic-first-form-demo.html");
+            String totalResult = new DemoFormPage(driver).multiInputFields("2", "3");
 
-        WebElement sum1Input = driver.findElement(By.id("sum1"));
+            Assertions.assertThat ("5").isEqualTo(totalResult);
+    }
 
-        sum1Input.sendKeys("2");
+    @Test
+    public void multiInputNaNTest () {
 
-        WebElement sum2Input = driver.findElement(By.id("sum2"));
+        String totalResult = new DemoFormPage(driver).multiInputFields("abc", "3");
 
-        sum2Input.sendKeys("3");
-
-        WebElement getTotalButton = driver.findElement(By.xpath("//button[contains(text(),'Get Total')]"));
-
-        getTotalButton.click();
-
-        WebElement totalResultMessage = driver.findElement(By.id("displayvalue"));
-
-        String totalResult = totalResultMessage.getText();
-
-        assert "5".equalsIgnoreCase(totalResult);
+        Assertions.assertThat ("NaN").isEqualTo(totalResult);
     }
 }
