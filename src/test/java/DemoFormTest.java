@@ -8,7 +8,6 @@ public class DemoFormTest extends BasicTest {
 
     @Test
     public void testMessage () {
-            setup();
 
             driver.get("https://www.seleniumeasy.com/test/basic-first-form-demo.html");
 
@@ -24,19 +23,11 @@ public class DemoFormTest extends BasicTest {
 
             String outputMessage = outTextField.getText();
 
-        try {
             assert TEST_STRING.equalsIgnoreCase(outputMessage);
-        } catch (AssertionError e) {
-            throw new AssertionError(e);
-        } finally {
-            driver.quit();
-        }
     }
 
     @Test
     public void multiInputTest () {
-
-        setup();
 
         driver.get("https://www.seleniumeasy.com/test/basic-first-form-demo.html");
 
@@ -56,12 +47,6 @@ public class DemoFormTest extends BasicTest {
 
         String totalResult = totalResultMessage.getText();
 
-        try {
-            assert "5".equalsIgnoreCase(totalResult);
-        } catch (AssertionError e) {
-            throw new AssertionError(e);
-        } finally {
-            driver.quit();
-        }
+        assert "5".equalsIgnoreCase(totalResult);
     }
 }
